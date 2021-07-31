@@ -15,8 +15,16 @@
   background-color: purple;
 }
 
-.white{
+.white {
   width: 33.33%;
   height: 33.33%;
   background-color: darkmagenta ;
+}
+
+.turn-tracker {
+  color: white;
+}
+
+.win-result {
+  color: white;
 }
