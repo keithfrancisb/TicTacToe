@@ -29,3 +29,9 @@
 .win-result {
   color: rgb(109, 72, 72);
 }
+
+.symbol{
+  color: white;
+  font-size: 150;
+  text-align: center;
+}
