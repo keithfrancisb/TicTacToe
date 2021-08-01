@@ -62,3 +62,8 @@ const setupSquare = (square) => {
 }
 
 squaresArray.forEach(setupSquare);
+
+/**
+ * Make html with html elements
+ * use js to play with them
+ */
