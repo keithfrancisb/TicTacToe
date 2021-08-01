@@ -1,37 +1,49 @@
 .background {
-  background-color: black;
-}
-
-.board {
-  width: 500px;
-  height: 500px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto auto;
-}
-
-.purple {
-  width: 33.33%;
-  height: 33.33%;
-  background-color: purple;
-}
-
-.white {
-  width: 33.33%;
-  height: 33.33%;
-  background-color: darkmagenta ;
-}
-
-.turn-tracker {
-  color: white;
-}
-
-.win-result {
-  color: rgb(109, 72, 72);
-}
-
-.symbol{
-  color: white;
-  font-size: 150;
-  text-align: center;
-}
+    background: url(background.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;;
+  }
+  
+  .board {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto;
+  }
+  
+  .bar{
+      height: 90px;
+      width:100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: row;
+      font-size: 30 ;
+      color: white;
+  }
+  
+  .purple {
+    width: 33.33%;
+    height: 33.33%;
+    background-color: purple;
+  }
+  
+  .white {
+    width: 33.33%;
+    height: 33.33%;
+    background-color: darkmagenta ;
+  }
+  
+  .turn-tracker {
+    color: white;
+  }
+  
+  .win-result {
+    color: rgb(109, 72, 72);
+  }
+  
+  .symbol{
+    color: white;
+    font-size: 150;
+    text-align: center;
+  }
