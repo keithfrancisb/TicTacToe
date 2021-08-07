@@ -8,6 +8,9 @@
  * Show Winner result
  */
 
+const player1Name = 'Player 1';
+const player2Name = 'Player 2';
+
 const player1 = 'X';
 const player2 = 'O';
 
@@ -45,43 +48,59 @@ const checkForDraw = (turnsMade) => {
 const checkForWinner = () => {
   const winningPatterns = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
-  let hasWinner = false;
+  // let hasWinner = false;
 
-  for (let i=0; i<winningPatterns.length; i++) {
-    const pattern = winningPatterns[i];
+  // for (let i=0; i<winningPatterns.length; i++) {
+  //   const pattern = winningPatterns[i];
 
-    let xCount = 0;
-    let oCount = 0;
+  //   let xCount = 0;
+  //   let oCount = 0;
 
-    for (let j=0; j<pattern.length; j++) {
-      const squareIdx = pattern[j];
-      const square = squares[squareIdx];
+  //   for (let j=0; j<pattern.length; j++) {
+  //     const squareIdx = pattern[j];
+  //     const square = squares[squareIdx];
 
-      if (square.innerHTML == player1) {
-        xCount++;
-      }
-      if (square.innerHTML == player2) {
-        oCount++;
-      }
-    }
+  //     if (square.innerHTML == player1) {
+  //       xCount++;
+  //     }
+  //     if (square.innerHTML == player2) {
+  //       oCount++;
+  //     }
+  //   }
 
-    if (xCount == 3) {
-      hasWinner = true;
-      break;
-    }
-    if (oCount == 3) {
-      hasWinner = true;
-      break;
-    };
-  }
+  //   if (xCount == 3) {
+  //     hasWinner = true;
+  //     break;
+  //   }
+  //   if (oCount == 3) {
+  //     hasWinner = true;
+  //     break;
+  //   }
+  // }
+
+  // alternate and more readable way of doing the for loop above
+  const winner = winningPatterns.reduce((acc, pattern) => {
+    const didPlayer1Win = pattern.every(squareIdx => {
+      return squares[squareIdx].innerHTML === player1;
+    });
+
+    const didPlayer2Win = pattern.every(squareIdx => {
+      return squares[squareIdx].innerHTML === player2;
+    });
+
+    if (didPlayer1Win) return player1Name;
+    if (didPlayer2Win) return player2Name;
+
+    return acc;
+  }, null);
   
-  if (hasWinner) {
+  if (winner) {
     const modal = document.getElementById('modal');
 
     const winResult = document.getElementById('win-result');
     
     modal.classList.add('game-over');
-    winResult.innerHTML = isPlayer1Turn ? 'Player 2 Wins': 'Player 1 Wins';
+    winResult.innerHTML = winner + ' wins!';
 
     return true;
   }
@@ -110,8 +129,3 @@ const setupSquare = (square) => {
 };
  
 squaresArray.forEach(setupSquare);
- 
- /**
-  * Make html with html elements
-  * use js to play with them
-  */
