@@ -104,12 +104,12 @@ background-color: #fefefe;
 margin: auto auto;
 padding: 20px;
 display: flex;
-justify-content: center;
+justify-content: space-around;
 align-items: center;
 border-radius: 4px;
 width: 500px;
 height: 300px;
-font-size: 100;
+font-size: 80;
 border-radius: 20px;
 }
 
