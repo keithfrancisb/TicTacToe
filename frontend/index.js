@@ -9,7 +9,7 @@
  */
 
 const player1 = 'X';
-const player2 = '0';
+const player2 = 'O';
 
 let isPlayer1Turn = true;
 let currentTurn = isPlayer1Turn ? player1 : player2;
@@ -17,12 +17,14 @@ let currentTurn = isPlayer1Turn ? player1 : player2;
 let i=0;
 // Add functionality to each square to mark player's Xs or Os
 const squares = document.getElementsByClassName('symbol');
+const turn = document.getElementById('turn');
 
 const squaresArray = Array.from(squares);
 
 const changeTurn = () => {
   isPlayer1Turn = !isPlayer1Turn;
   currentTurn = isPlayer1Turn ? player1 : player2;
+  turn.innerHTML = isPlayer1Turn ? 'Player 1' + ' Turn' : 'Player 2' + ' Turn';
 };
 
 const checkForDraw = () => {
