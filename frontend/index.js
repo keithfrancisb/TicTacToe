@@ -29,7 +29,7 @@ const changeTurn = () => {
 };
 
 const checkForDraw = (turnsMade) => {
-  if (turnsMade == 9) {
+  if (turnsMade >= 9) {
     // show draw result
     const modal = document.getElementById('modal');
 
@@ -39,24 +39,53 @@ const checkForDraw = (turnsMade) => {
     
     modal.classList.add('game-over');
     winResult.innerHTML = 'Draw';
-
-    turnsMade=0;
   }
 };
 
-const checkForWinner = (turnsMade) => {
-  if(turnsMade == 3) {
+const checkForWinner = () => {
+  const winningPatterns = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+  let hasWinner = false;
+
+  for (let i=0; i<winningPatterns.length; i++) {
+    const pattern = winningPatterns[i];
+
+    let xCount = 0;
+    let oCount = 0;
+
+    for (let j=0; j<pattern.length; j++) {
+      const squareIdx = pattern[j];
+      const square = squares[squareIdx];
+
+      if (square.innerHTML == player1) {
+        xCount++;
+      }
+      if (square.innerHTML == player2) {
+        oCount++;
+      }
+    }
+
+    if (xCount == 3) {
+      hasWinner = true;
+      break;
+    }
+    if (oCount == 3) {
+      hasWinner = true;
+      break;
+    };
+  }
+  
+  if (hasWinner) {
     const modal = document.getElementById('modal');
 
-    // grab win result element
-    // set innerHTML
     const winResult = document.getElementById('win-result');
     
     modal.classList.add('game-over');
     winResult.innerHTML = isPlayer1Turn ? 'Player 2 Wins': 'Player 1 Wins';
 
-    turnsMade=0;
+    return true;
   }
+  return false;
 };
 
 const restartButton = document.getElementById('restart-button');
@@ -64,6 +93,7 @@ const restartButton = document.getElementById('restart-button');
 const startGame = () => {
   modal.classList.remove('game-over');
   squaresArray.forEach(input => input.innerHTML ='');
+  turnsMade=0;
 };
 
 restartButton.addEventListener('click', startGame);
@@ -74,8 +104,8 @@ const setupSquare = (square) => {
 
     turnsMade++;
     changeTurn();
-    checkForWinner(turnsMade);
-    checkForDraw(turnsMade);
+    const hasWinner = checkForWinner();
+    if (!hasWinner) checkForDraw(turnsMade);
   });
 };
  
